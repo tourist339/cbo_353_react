@@ -1,0 +1,30 @@
+#root,.App,#main-staff{
+    height: 100%;
+}
+#root,.App{
+    display: flex;
+    flex-direction: column;
+}
+#all-customers{
+    height: 100%;
+    padding: 4px;
+    flex: 0.5;
+    border-right: 2px solid black;
+
+}
+#all-customers button{
+    width: 100%;
+}
+#sc-allreports{
+    flex: 1;
+}
+#single-customer-reports{
+    flex: 1;
+}
+.single-report-box{
+    margin: 0.5em 0.2em;
+    background-color: lightblue;
+    padding: 0.5em 0.5em;
+    text-align: right;
+    border-radius: 10px;
+}

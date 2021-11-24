@@ -24,6 +24,57 @@ class Customer{
             callback(true,result)
         })
     }
+    static getReportFromReportId(report_id,callback){
+        let query=`SELECT data FROM ${env.database.REPORT_TABLE} WHERE id = ?`
+        conn.query(query,[report_id],(err,result)=>{
+            if(err){
+                throw err
+            }
+            console.log(result,report_id)
+            callback(result[0].data)
+        })
+    }
+
+    static getReportsArrayFromReportIDs(report_ids_array,callback){
+         let reports_array=[]
+        for (let i = 0; i < report_ids_array.length; i++) {
+            const report_id=report_ids_array[i]
+            this.getReportFromReportId(report_id,(report)=>{
+                reports_array.push(report)
+                if(reports_array.length==report_ids_array.length){
+                    callback(reports_array)
+                }
+            })
+        }
+    }
+    static getReportsArrayFromCustomerId(customerId,callback){
+        let query=`SELECT report_ids FROM ${env.database.CUSTOMER_TABLE} WHERE id = ?`
+        conn.query(query,[customerId],(err,result)=>{
+            if(err)
+                throw err
+            let report_ids=result[0].report_ids
+            if(report_ids&&report_ids.length>0){
+                callback(report_ids.split(","))
+            }else{
+                callback([])
+            }
+        })
+
+    }
+    static addReportId(customerId,reportId,callback){
+
+         this.getReportsArrayFromCustomerId(customerId,(reports_array)=>{
+             reports_array.push(reportId)
+             let new_array_string=reports_array.join(",")
+             let query=`UPDATE ${env.database.CUSTOMER_TABLE} SET report_ids = ? WHERE id = ?`
+             conn.query(query,[new_array_string,customerId],(err,result)=> {
+                 if(err)
+                     throw err
+                 callback(result)
+             })
+         })
+
+    }
 
     static getSingleCustomer(id,callback){
         let query=`SELECT * FROM ${env.database.CUSTOMER_TABLE} WHERE id = ?`
@@ -31,7 +82,19 @@ class Customer{
             if(err){
                 throw err
             }
-            callback(result[0])
+            let customer=result[0]
+            let customer_report_ids=customer.report_ids
+            if(customer_report_ids&&customer_report_ids!=""){
+                let customer_report_ids_array=customer_report_ids.split(",")
+                this.getReportsArrayFromReportIDs(customer_report_ids_array,reports_array=>{
+                    customer.reports=reports_array
+                    callback(customer)
+
+                })
+            }else{
+                customer.reports=[]
+                callback(customer)
+            }
         })
     }
 

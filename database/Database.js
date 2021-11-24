@@ -1,6 +1,7 @@
 let conn
 const bcrypt=require("bcrypt")
 const env=require("../env")
+const {response} = require("express");
 class Database{
 
 
@@ -81,6 +82,15 @@ class Database{
         })
     }
 
+    static addReport(report_data,callback){
+        let query=`INSERT INTO ${env.database.REPORT_TABLE} (data) VALUES(?)`
+        conn.query(query,[report_data],(err,result)=>{
+            if(err)
+                throw err
+            callback(result)
+        })
+
+    }
 
 
 }

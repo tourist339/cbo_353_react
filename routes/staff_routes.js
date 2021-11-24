@@ -32,4 +32,16 @@ router.get("/getInformation",(req,res)=>{
 
 })
 
+router.post("/addReport",(req,res)=>{
+    const customerId=req.body.customerId
+    const reportData=req.body.reportData
+    Database.addReport(reportData,(result)=>{
+        const reportId=result.insertId
+        Customer.addReportId(customerId,reportId,(result)=>{
+            res.send({result:true,data:result})
+        })
+    })
+
+})
+
 module.exports=router
