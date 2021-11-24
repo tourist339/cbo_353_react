@@ -1,6 +1,19 @@
-import React from 'react';
-
+import React, {useEffect, useState} from 'react';
+import "../css/admin/staff.css"
+import {makeAxiosGetRequest} from "../helper";
 const AdminStaffPanel = (props) =>{
+
+    const [allStaff,setAllStaff]=useState([])
+
+    useEffect(()=>{
+        makeAxiosGetRequest("/admin/getAllStaff",
+            (err,response)=>{
+            if(err)
+                throw err
+
+                setAllStaff(response)
+            })
+    },[])
 
     return(
         <div className="row-flex" id="staff-main-box">
@@ -41,8 +54,9 @@ const AdminStaffPanel = (props) =>{
                 </div>
             </div>
             <div id="all-staff">
-                <p className="large-text" style="margin: 0px;text-align: center">All Staff</p>
+                <p className="large-text" style={{margin: "0px",textAlign: "center"}}>All Staff</p>
                 <table id="all-staff-table">
+                    <tbody>
                     <tr>
                         <th>Username</th>
 
@@ -51,6 +65,18 @@ const AdminStaffPanel = (props) =>{
                         <th>Link</th>
 
                     </tr>
+                    {allStaff.map(staff=>{
+                        return(
+                        <tr>
+                            <td>{staff.username}</td>
+                            <td>{staff.firstname+" "+staff.lastname}</td>
+                            <td>{staff.addiction_type}</td>
+                            <td>{<a href={"/admin/staff/"+staff.id} className="classic-btn" target={"_blank"}>View</a>}</td>
+
+                        </tr>
+                        )
+                    })}
+                    </tbody>
                 </table>
 
             </div>

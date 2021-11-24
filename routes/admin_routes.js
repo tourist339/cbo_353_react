@@ -23,17 +23,15 @@ router.get("/",(req,res)=>{
     res.sendFile(env.root_dir+"/templates/admin/index.html")
 })
 
-router.get("/staff",(req,res)=>{
-    if(req.query.hasOwnProperty("id")){
-        Staff.getSingleStaff(req.query.id,(result,data)=>{
-            if(!result){
-                res.send(data)
-            }else{
-                res.sendFile(env.root_dir + "/templates/admin/singlestaff.html")
-            }
-        })
+router.get("/staff/:id",(req,res)=>{
+    if(req.params.hasOwnProperty("id")){
+        Staff.getSingleStaff(req.params.id,(result,data)=>{
+            res.send({result:result,data:data})
+
+        }
+        )
     }else {
-        res.sendFile(env.root_dir + "/templates/admin/staff.html")
+        res.send({result: false, data: "Invalid URL"})
     }
 })
 
@@ -209,8 +207,8 @@ router.post("/registerStaff",(req,res)=>{
 
 router.post("/addDoctorToPatient",(req,res)=>{
     if(req.body.hasOwnProperty("doctorId")&&req.body.hasOwnProperty("patientId")&&req.body.patientId!=""&&req.body.doctorId!=""){
-        const patientId=req.body.patientId
-        const doctorId=req.body.doctorId
+        const patientId=req.body.patientId.toString()
+        const doctorId=req.body.doctorId.toString()
         Customer.addDoctorToCustomer(patientId,doctorId,()=>{
             Staff.addCustomerToDoctor(patientId,doctorId,()=>{
                 res.send({result:true,data:"Added"})
@@ -239,8 +237,8 @@ router.post("/deleteCustomer",(req,res)=>{
 })
 
 router.post("/removePatientFromDoctor",(req,res)=>{
-    const patientId=req.body.patientId
-    const doctorId=req.body.doctorId
+    const patientId=req.body.patientId.toString()
+    const doctorId=req.body.doctorId.toString()
 
     Database.removePatientFromDoctor(patientId,doctorId,()=>{
         Customer.removeDoctor(patientId,()=>{
