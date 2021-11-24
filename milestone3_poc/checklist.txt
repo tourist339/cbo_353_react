@@ -1,0 +1,17 @@
+Work done Since Last Milestone:
+The team has mainly worked on creating enemies and also procedural generation
+Gitlab Link: https://git.cs.usask.ca/kak110/floorislava
+
+
+  Enemies:
+    - Three enemies added (SkeletonSpear,SkeletonArrow,SkeletonMage)
+    - Enemies' AIs added
+    - Enemies' animations added
+    - Enemies' stats added
+    - Enemies' Attacks added
+    - Enemies' attack's animations added
+
+  Procedural-Generation:
+    - New platforms get procedurally generated as player move up the level
+    - Different Kind of platforms added which are generated at random
+

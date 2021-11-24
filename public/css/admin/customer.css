@@ -1,0 +1,51 @@
+#seach-person-box{
+    margin: 1em 0px;
+
+}
+#seach-person-box p{
+    font-size: 1.6em;
+    padding: 0em 0.4em;
+}
+#seach-person-box input{
+    font-size: 1.4em;
+    padding: 0 0.4em !important;
+    width: 50%;
+}
+#all-customers-table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0em 1em;
+}
+#all-customers-table th{
+    text-align: center;
+    align-content: center;
+    font-size: 1.5em;
+    color: black;
+
+}
+#all-customers-table td{
+    text-align: center;
+    align-content: center;
+    font-size: 1.2em;
+    padding: 1em;
+    color: dimgrey;
+
+}
+#all-customers-table tr{
+    background-color: rgba(255,127,127,0.2);
+}
+#all-customers-table td .classic-btn{
+    font-size: 1em;
+    padding: 0.3em 0.4em;
+
+}
+#all-customers-table td[colspan="6"]{
+
+    padding: 0;
+
+}
+.assign-doctor-box{
+    background-color: lightgray;
+    padding: 1em;
+    width: 100%;
+}

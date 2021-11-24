@@ -1,0 +1,115 @@
+*{
+    font-size: 16px;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.hidden{
+    display: none !important;
+}
+.classic-btn{
+    background-color: #FA5F55	;
+    font-size:1.3em;
+    padding: 0.5em 0.8em;
+    border: 0;
+    color: rgba(0,0,0,0.7);
+    border-radius: 0.3em;
+    text-decoration: none;
+}
+
+.bg-gray{
+    background-color: lightgray	;
+    color: black;
+}
+
+.bg-gray:hover{
+    background-color: dimgray;
+    color: white;
+}
+
+.bg-red{
+    background-color: #FFFFFF	;
+    color: rgba(0,0,0,0.7);
+}
+
+.bg-red:hover{
+    background-color: #D22B2B	;
+    color: whitesmoke;
+}
+
+.classic-btn:hover{
+    background-color: #D22B2B	;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.row-flex{
+    display: flex;
+    flex-direction: row;
+}
+
+.row-flex-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.col-flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.col-flex-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auto-left{
+    margin-left: auto;
+}
+
+.large-text{
+    font-size: 2rem;
+}
+
+.medium-text{
+    font-size: 1.3rem;
+
+}
+
+.para-text{
+    font-size: 1.1rem;
+}
+
+.label-input-box{
+    margin-right: 1em;
+}
+
+.label-input-box .label{
+    margin:0.4em 0;
+}
+
+.label-input-box >input{
+    padding: 0.2em 0.4em;
+    width: 15em;
+}
+
+#navigation-bar{
+    width: 100%;
+    padding: 0.5em 0;
+}
+
+.row-flex .label{
+    margin-right: 0.5em;
+}
+
+.underline{
+    width: fit-content;
+    padding-bottom: 0.2em;
+
+    padding-right: 1em;
+    border-bottom: 2px solid black;
+}

@@ -1,0 +1,52 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
+#staff-main-box{
+    height: 100%;
+
+
+}
+#staff-main-box>div{
+    border: 2px solid black;
+    height: 100%;
+    overflow-y: scroll;
+}
+#register-staff{
+    flex: 1;
+    border: 2px solid black;
+}
+
+#all-staff{
+    flex: 1.5;
+
+}
+
+#all-staff-table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0em 1em;
+}
+#all-staff-table th{
+    text-align: center;
+    align-content: center;
+    font-size: 1.5em;
+    color: black;
+
+}
+#all-staff-table td{
+    text-align: center;
+    align-content: center;
+    font-size: 1.2em;
+    padding: 1em;
+    color: dimgrey;
+
+}
+#all-staff-table tr{
+    background-color: rgba(255,127,127,0.2);
+}
+#all-staff-table td .classic-btn{
+    font-size: 1em;
+    padding: 0.3em 0.4em;
+
+}
