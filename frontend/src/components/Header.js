@@ -1,22 +1,35 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {logoutUser, makeAxiosGetRequest} from "../helper";
+import {useHistory, useLocation} from "react-router-dom";
 
 
 const Header=(props)=> {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userType, setUserType] = useState("")
+    const history=useHistory()
+    const location=useLocation()
     useEffect(() => {
-        makeAxiosGetRequest("/login/getLoginDetails", (err, response) => {
+        makeAxiosGetRequest("/login/getLoginDetails", (err, session) => {
             if (err)
                 throw err
-            console.log(response)
-            if (response.loggedIn) {
+            console.log(session)
+
+
+            if (session.loggedIn) {
                 setIsLoggedIn(true)
-                setUserType(response.type)
+                setUserType(session.type)
+                if(location.pathname.split("/")[1]!=session.type){
+                    history.push("/"+session.type)
+                }
             } else {
                 setIsLoggedIn(false)
-
+                if(location.pathname.length>0) {
+                    let firstPath=location.pathname.split("/")[1]
+                    if (firstPath== "admin"||firstPath=="customer"||firstPath=="staff") {
+                       history.push("/")
+                    }
+                }
             }
 
 

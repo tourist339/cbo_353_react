@@ -54,6 +54,7 @@ class Database{
 
     static removePatientFromDoctor(patientId,doctorId,callback){
         console.log("here")
+        patientId=patientId.toString()
         this.getCurrentPatientsIds(doctorId,customerIds=>{
             console.log(customerIds)
             if(customerIds==null||customerIds==""){

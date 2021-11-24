@@ -6,6 +6,7 @@ const Login = (props) =>{
     const [password,setPassword]=useState("")
     const [loggedIn,setLoggedIn]=useState(false)
     useEffect(()=> {
+        console.log("Rewrw")
             isUserLoggedIn((result, data) => {
                 setLoggedIn(result)
             })

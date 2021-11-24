@@ -46,7 +46,7 @@ const logoutUser=(callback)=>{
     makeAxiosGetRequest("/logout",(err,response)=>{
         if(err)
             throw err
-        console.log(response)
+        window.location.reload()
     })
 }
 export {makeAxiosGetRequest,makeAxiosPostRequest,isUserLoggedIn,logoutUser}

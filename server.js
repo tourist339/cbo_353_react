@@ -4,6 +4,8 @@ const session=require("cookie-session")
 const app=express()
 const loginRoutes=require("./routes/login_routes")
 const adminRoutes=require("./routes/admin_routes")
+const staffRoutes=require("./routes/staff_routes")
+
 const databaseHandler=require("./DatabaseHandler")
 const env = require("./env");
 const cors=require("cors")
@@ -18,6 +20,8 @@ app.use(session({
 
 
 app.use("/admin",adminRoutes)
+app.use("/staff",staffRoutes)
+
 app.use(loginRoutes)
 
 app.get("/",(req,res)=>{

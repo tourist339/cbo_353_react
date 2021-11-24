@@ -8,17 +8,17 @@ const Database=require("../database/Database")
 
 const router=express.Router()
 
-// router.use((req,res,next)=>{
-//     if(env.checkLoggedIn(req)){
-//         if(!req.session.type=="admin"){
-//             res.send("Not logged in as admin")
-//         }else{
-//             next()
-//         }
-//     }else{
-//         res.send("Not logged in")
-//     }
-// })
+router.use((req,res,next)=>{
+    if(env.checkLoggedIn(req)){
+        if(!req.session.type=="admin"){
+            res.send({result:false,data:"Not logged in as admin"})
+        }else{
+            next()
+        }
+    }else{
+        res.send("Not logged in")
+    }
+})
 router.get("/",(req,res)=>{
     res.sendFile(env.root_dir+"/templates/admin/index.html")
 })
@@ -51,14 +51,12 @@ router.get("/customer",(req,res)=>{
 
 router.get("/getSingleStaff",(req,res)=>{
 
-
-        Staff.getSingleStaff(req.query.id,(result,data)=>{
-
-
-                res.send({result:result,data:data})
+    Staff.getSingleStaff(req.query.id,(result,data)=>{
 
 
-        })
+        res.send({result:result,data:data})
+
+    })
 
 })
 

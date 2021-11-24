@@ -8,24 +8,24 @@ import Home from "./components/Home";
 import AdminStaffPanel from "./components/AdminStaffPanel";
 import AdminCustomersPanel from "./components/AdminCustomersPanel";
 import AdminSingleStaff from "./components/AdminSingleStaff";
+import StaffShowPatients from "./components/StaffShowPatients";
 function App() {
   return (
     <div className="App">
       <Header/>
-    <Switch>
-      <Route path="/login" component={Login}>
-      </Route>
+
+      <Switch>
+
+      <Route path="/login" component={Login}/>
       <Route exact path="/admin/staff/:index" component={AdminSingleStaff}/>
       <Route  path="/admin/staff" component={AdminStaffPanel}/>
+      <Route  path="/admin/customer" component={AdminCustomersPanel}/>
 
       <Route  path="/admin" component={AdminStaffPanel}/>
 
-        <Route path="/staff">
+        <Route path="/staff" component={StaffShowPatients}/>
 
-      </Route>
-      <Route path="/staff">
 
-      </Route>
       <Route path="/" component={Home}>
       </Route>
     </Switch>

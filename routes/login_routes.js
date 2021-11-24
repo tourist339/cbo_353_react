@@ -15,7 +15,7 @@ router.get("/login/getLoginDetails",(req,res)=>{
     const isLoggedIn=req.session.loggedIn
     // console.log(req.session)
     if(isLoggedIn) {
-        res.send({loggedIn: true,username:req.session.username,type:req.session.type})
+        res.send({loggedIn: true,username:req.session.username,type:req.session.type,id:req.session.loginId})
     }else{
         res.send({loggedIn: false})
 
@@ -32,6 +32,7 @@ router.post("/loginUser",(req,res)=>{
         }else{
             req.session.loggedIn=true
             req.session.username=data.username
+            req.session.loginId=data.id
             req.session.type=data.type
         console.log(req.session)
 
@@ -50,9 +51,10 @@ router.get("/register",(req,res)=>{
     }
 })
 router.get("/logout",(req,res)=>{
-    req.session.loggedIn=false
-    req.session.username=""
-    req.session.type=""
+    req.session=null
+    // req.session.loggedIn=false
+    // req.session.username=""
+    // req.session.type=""
     res.send({result:true})
 })
 
@@ -78,6 +80,7 @@ router.post("/registerCustomer", (req, res) => {
                     req.session.loggedIn=true
                     req.session.username=data.username
                     req.session.type=data.type
+                    req.session.loginId=data.id
                     res.send({result:true})
 
 
