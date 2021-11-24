@@ -7,20 +7,15 @@ const Staff = require("../database/Staff");
 const router=express.Router()
 
 
-router.get("/login",(req,res)=>{
 
-    if(req.session.loggedIn){
-        res.redirect("/")
-    }else{
-        res.sendFile(env.root_dir+"/templates/login.html")
-    }
-
+router.use((req,res,next)=>{
+    next()
 })
-
 router.get("/login/getLoginDetails",(req,res)=>{
     const isLoggedIn=req.session.loggedIn
+    // console.log(req.session)
     if(isLoggedIn) {
-        res.send({loggedIn: true,username:req.session.username})
+        res.send({loggedIn: true,username:req.session.username,type:req.session.type})
     }else{
         res.send({loggedIn: false})
 
@@ -38,9 +33,12 @@ router.post("/loginUser",(req,res)=>{
             req.session.loggedIn=true
             req.session.username=data.username
             req.session.type=data.type
-            res.send({"result":true})
-        }
-    })
+        console.log(req.session)
+
+        res.send({result:true,data:req.session})
+
+
+    }})
 
 
 })
@@ -55,7 +53,7 @@ router.get("/logout",(req,res)=>{
     req.session.loggedIn=false
     req.session.username=""
     req.session.type=""
-    res.redirect("/")
+    res.send({result:true})
 })
 
 router.post("/registerCustomer", (req, res) => {

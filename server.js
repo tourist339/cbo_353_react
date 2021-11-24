@@ -1,21 +1,21 @@
 const express =require("express")
 const bodyParser =require("body-parser");
-const session=require("express-session")
+const session=require("cookie-session")
 const app=express()
 const loginRoutes=require("./routes/login_routes")
 const adminRoutes=require("./routes/admin_routes")
 const databaseHandler=require("./DatabaseHandler")
 const env = require("./env");
-app.use(express.static("public/css"))
+const cors=require("cors")
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
-app.use(express.static("public"))
 
 app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
+    name: 'session',
+    keys:["key1","key2"]
 }))
+
 
 app.use("/admin",adminRoutes)
 app.use(loginRoutes)
@@ -34,6 +34,7 @@ app.get("/",(req,res)=>{
 
     }
 })
+
 
 app.get("/getAllAddictions",(req,res)=>{
     databaseHandler.getAllAddictions((result,data)=>{
