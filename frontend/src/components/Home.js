@@ -14,10 +14,10 @@ const Home = (props) => {
                 }
             })
         }
-    },[props]);
+    },[]);
 
 return(
-        <h1>Home</h1>
+        <h1>Customer Home Page</h1>
     )
 }
 

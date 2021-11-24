@@ -1,0 +1,42 @@
+Technologies used in PART D:
+
+Node.js - Backend
+MySQL - DATABASE
+ReacrJS,Javascript,HTML , CSS - Frontend
+
+cookie-session for mantaining sessions
+
+Architecture:
+The frontend(ReactJS) runs on a seperate port and sends api requests to the server by using the server's url
+react-axios is used instead of fetch to make ajax requests to the server
+I send axios request to the server in react hooks and after getting back the data , I update the required state of the
+component using the data. All the onClick and other event handlers are managed itself from react
+
+
+    -when the user logs in , the server checks from database the kind of user that logged in .. could be either "staff","admin"
+    or a "customer".
+    - Header component is used to mantain navbar and also handles redirection according to what kind of user is logged in
+    by sending a GET request to the server asking for login details at every page render
+    -Then I use react-router-dom to check which component to load to according to the URL
+    - all the requests made to admin server urls are handled by a admin router where I have attached a custom middleware that checks
+    if the user is loggedIn as an admin or not . If the user is not logged in as admin then request fails
+
+
+Testing:
+    - Did testing by entering custom urls to the url bar and checking if the page redirects to the required url or not
+    . For example if I am logged in as staff , I cannot go to any of "/admin" urls
+    - Also used different kind of states in every react component to handle edge cases , for example if the state
+    was not loaded yet or was empty then handle that accordingly
+
+
+Difference between Part A and Part D:
+    -Part A does not have a seperate frontend port whereas in Part D , React uses it's own seperate port to run the frontend
+
+    -All the backend and frontend logic is handled on the server using static files in part A whereas in Part D , react handles
+    all the frontend logic in it's own
+
+    Again advantage is that all the frontend logic is seperate and with the help of React , I can write reusable components
+    rather than having to copy paste the html files
+     -Also there is no need to write javascript to dynamically create elements. With the help of React component's
+     states, props and the Virtual Dom , the performance is visibly better than Part A
+

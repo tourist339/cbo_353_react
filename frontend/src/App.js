@@ -9,6 +9,7 @@ import AdminStaffPanel from "./components/AdminStaffPanel";
 import AdminCustomersPanel from "./components/AdminCustomersPanel";
 import AdminSingleStaff from "./components/AdminSingleStaff";
 import StaffShowPatients from "./components/StaffShowPatients";
+import Register from "./components/Register";
 function App() {
   return (
     <div className="App">
@@ -17,7 +18,9 @@ function App() {
       <Switch>
 
       <Route path="/login" component={Login}/>
-      <Route exact path="/admin/staff/:index" component={AdminSingleStaff}/>
+          <Route path="/register" component={Register}/>
+
+          <Route exact path="/admin/staff/:index" component={AdminSingleStaff}/>
       <Route  path="/admin/staff" component={AdminStaffPanel}/>
       <Route  path="/admin/customer" component={AdminCustomersPanel}/>
 

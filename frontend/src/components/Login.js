@@ -5,6 +5,7 @@ const Login = (props) =>{
     const [username,setUsername]=useState("")
     const [password,setPassword]=useState("")
     const [loggedIn,setLoggedIn]=useState(false)
+    const [err,setErr]=useState("")
     useEffect(()=> {
         console.log("Rewrw")
             isUserLoggedIn((result, data) => {
@@ -25,7 +26,12 @@ const Login = (props) =>{
             if(err)
                 throw err
             console.log(response)
+                if(!response.result)
+                    setErr("Wrong username/password")
+                else
+                    setErr("")
             setLoggedIn(response.result)
+
         })
 
 
@@ -43,7 +49,7 @@ const Login = (props) =>{
             </div>
 
             <input type="submit" id="login-submit" onClick={login}></input>
-                <p id="login-err" className="para-text"></p>
+                <p id="login-err" className="para-text">{err}</p>
         </div>
 
         <p className="para-text">Not have an account?<a href="/register"> Register</a></p>

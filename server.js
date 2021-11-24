@@ -24,20 +24,6 @@ app.use("/staff",staffRoutes)
 
 app.use(loginRoutes)
 
-app.get("/",(req,res)=>{
-    console.log("here")
-    if(env.checkLoggedIn(req)) {
-        console.log("here")
-        if(env.isAdmin(req)){
-            res.redirect("/admin")
-        }else {
-            res.sendFile(env.root_dir + "/templates/customer/general_info.html")
-        }
-    }else{
-        res.sendFile(env.root_dir + "/templates/index.html")
-
-    }
-})
 
 
 app.get("/getAllAddictions",(req,res)=>{

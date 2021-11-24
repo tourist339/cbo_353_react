@@ -5,7 +5,6 @@ const StaffShowPatients = (props) => {
     const [staff,setStaff]=useState({})
     const [report,setReport]=useState("")
     const [customerSelected,setCustomerSelected]=useState({})
-    const [activePatientUsername,setActivePatientUsername]=useState("")
     const [updated,setUpdated]=useState("")
     useEffect(()=>{
         makeAxiosGetRequest("/staff/getInformation",(err,response)=>{
@@ -24,6 +23,7 @@ const StaffShowPatients = (props) => {
             reportData:report
         },(err,response)=>{
             setUpdated(updated+"a")
+            setReport("")
         })
     }
 
@@ -33,7 +33,7 @@ const StaffShowPatients = (props) => {
                 <p className={"medium-text"}>All Patients</p>
             {staff.hasOwnProperty("customers")?
                 staff.customers.map(customer=>
-                    <button key={customer.id} onClick={()=>setCustomerSelected(customer)} className={"classic-btn bg-gray"}>{customer.firstname+" "+customer.lastname}</button>
+                    <button key={customer.id} onClick={()=>setCustomerSelected(customer)} className={`classic-btn ${customerSelected.id==customer.id?"bg-red":"bg-gray"}`}>{customer.firstname+" "+customer.lastname}</button>
                 )
                 :<></>}
             </div>

@@ -1,0 +1,32 @@
+Technologies used in PART A:
+
+Node.js - Backend
+MySQL - DATABASE
+Javascript,HTML , CSS - Frontend
+
+express-session for mantaining sessions
+
+public folder contain static resources such as css and js which are declared static using express.static function
+
+Architecture:
+
+The frontend pages use javascript to send fetch ajax requests to the server which based on the requests sends the required
+data back to the client or can redirect to a new page and send a new html file
+Here , the server is responsible for sending html files to the client and has full control over what is being displayed
+and not
+
+express-session are used to mantain session
+    -when the user logs in , the server checks from database the kind of user that logged in .. could be either "staff","admin"
+    or a "customer". Then the server sends back the html file  accordingly
+    - all the requests made to admin server urls are handled by a admin router where I have attached a custom middleware that checks
+    if the user is loggedIn as an admin or not . If the user is not logged in as admin then request fails
+
+
+Testing:
+    - There has been a lot of error checking done by sending wrong data to server and asking to get the data
+    from the database which does not exists and the server is able to handle those errors properly
+    -  all the output from server which are error-prone are sent back to client using a {{result,data}} object
+    where result is the boolean flag if the request was succesful or not and data is the required data returned if request was
+    succesfull otherwise it's the error message
+
+    - I have tested by creating various login_credentials of different priveleges and they all do what they are supposed to

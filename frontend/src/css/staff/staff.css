@@ -14,6 +14,7 @@
 }
 #all-customers button{
     width: 100%;
+    margin: 5px 0;
 }
 #sc-allreports{
     flex: 1;
